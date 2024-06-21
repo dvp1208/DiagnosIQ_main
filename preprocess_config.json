@@ -1,0 +1,98 @@
+{
+  "MICCAI_BraTS_Training": {
+    "src_dir_path": "./SharedResources/datasets/MICCAI_BraTS_2019_Data_Training",
+    "dst_dir_path": "./SharedResources/datasets/MICCAI_BraTS_2019_Data_Training_Slices",
+    "image_size": 256,
+    "modalities": [
+      {
+        "name": "T1",
+        "pattern": "t1",
+        "save_pattern": "t1"
+      },
+      {
+        "name": "T1CE",
+        "pattern": "t1ce",
+        "save_pattern": "t1ce"
+      },
+      {
+        "name": "T2",
+        "pattern": "t2",
+        "save_pattern": "t2"
+      },
+      {
+        "name": "FLAIR",
+        "pattern": "flair",
+        "save_pattern": "flair"
+      },
+      {
+        "name": "SEG",
+        "pattern": "seg",
+        "save_pattern": "seg"
+      }
+    ]
+  },
+  "MICCAI_BraTS_Validation": {
+    "src_dir_path": "./SharedResources/datasets/MICCAI_BraTS_2019_Data_Validation",
+    "dst_dir_path": "./SharedResources/datasets/MICCAI_BraTS_2019_Data_Validation_Slices",
+    "image_size": 256,
+    "modalities": [
+      {
+        "name": "T1",
+        "pattern": "t1",
+        "save_pattern": "t1"
+      },
+      {
+        "name": "T1CE",
+        "pattern": "t1ce",
+        "save_pattern": "t1ce"
+      },
+      {
+        "name": "T2",
+        "pattern": "t2",
+        "save_pattern": "t2"
+      },
+      {
+        "name": "FLAIR",
+        "pattern": "flair",
+        "save_pattern": "flair"
+      },
+      {
+        "name": "SEG",
+        "pattern": "output",
+        "save_pattern": "seg"
+      }
+    ]
+  },
+  "MICCAI_BraTS_Testing": {
+    "src_dir_path": "./SharedResources/datasets/MICCAI_BraTS_2019_Data_Testing",
+    "dst_dir_path": "./SharedResources/datasets/MICCAI_BraTS_2019_Data_Testing_Slices",
+    "image_size": 256,
+    "modalities": [
+      {
+        "name": "T1",
+        "pattern": "t1",
+        "save_pattern": "t1"
+      },
+      {
+        "name": "T1CE",
+        "pattern": "t1ce",
+        "save_pattern": "t1ce"
+      },
+      {
+        "name": "T2",
+        "pattern": "t2",
+        "save_pattern": "t2"
+      },
+      {
+        "name": "FLAIR",
+        "pattern": "flair",
+        "save_pattern": "flair"
+      },
+      {
+        "name": "SEG",
+        "pattern": "output",
+        "save_pattern": "seg"
+      }
+    ]
+  }
+}
