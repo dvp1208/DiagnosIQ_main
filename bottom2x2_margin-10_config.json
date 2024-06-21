@@ -1,0 +1,87 @@
+{
+  "run": {
+    "seed": 2142,
+    "n_epochs": 300,
+    "visible_devices": "0",
+    "distributed_backend": "dp",
+    "resume_checkpoint": "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/saved_models/MICCAI_BraTS/bottom2x2_margin-10-epoch=0299.ckpt",
+    "num_sanity_val_steps": 2,
+    "limit_val_batches": 10,
+    "training_dataset": "concat_dataset",
+    "sync_batchnorm": true
+  },
+  "save": {
+    "study_name": "bottom2x2_margin-10-epoch=0299",
+    "test_save_dir_name": "MICCAI_BraTS_2019_Data_Training",
+    "save_dir_path": "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/latent_codes/",
+    "n_save_images": 32,
+    "save_interval": 50,
+    "save_limit_num": 3
+  },
+  "metric": {
+    "n_classes": 4,
+    "class_name_to_index": {
+      "Background": 0,
+      "NET": 1,
+      "ED": 2,
+      "ET": 3
+    }
+  },
+  "models": {
+    "input_dim": 3,
+    "emb_dim": 512,
+    "enc_filters": [32, 64, 128, 256, 512, 512, 512, 512],
+    "dec_filters": [512, 512, 512, 512, 256, 128, 64, 32],
+    "seg_output_dim": 4,
+    "latent_size": 2,
+    "use_vae_nEnc": true,
+    "use_vae_aEnc": false
+  },
+  "losses": {
+    "dice_loss": {
+      "ignore_index": 0
+    },
+    "focal_loss": {
+      "gamma": 2,
+      "alpha": false
+    },
+    "use_perceptual": true,
+    "use_emphasis": false,
+    "detach_at_e_rec": ["nac"],
+    "minimize_aac_norm": true,
+    "d_aac_margin_loss_type": "kldiv"
+  },
+  "optimizer": {
+    "g_lr": 1e-4,
+    "d_lr": 1e-4,
+    "weight_decay": 1e-5
+  },
+  "dataset": {
+    "dataset_name": "MICCAIBraTSSubDataset",
+    "modalities": ["t1", "t1ce", "flair"],
+    "train_root_dir_paths": [
+      "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/datasets/MICCAI_BraTS_2019_Data_Training_Slices"
+    ],
+    "test_root_dir_paths": [
+      "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/datasets/MICCAI_BraTS_2019_Data_Training_Slices",
+      "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/datasets/MICCAI_BraTS_2019_Data_Validation_Slices",
+      "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/datasets/MICCAI_BraTS_2019_Data_Testing_Slices"
+    ],
+    "use_augmentation": true,
+    "batch_size": 30,
+    "test_batch_size": 30,
+    "num_workers": 0,
+    "patient_ids": false
+  },
+  "loss_weight": {
+    "recon": 1.0,
+    "h_nac_vae": 0.1,
+    "h_aac_vae": 0.1,
+    "h_aac_norm": 0.1,
+    "d_aac_vae": 0.1,
+    "d_aac_margin": 0.1,
+    "margin": 10,
+    "seg": 10.0,
+    "consistent": 1.0
+  }
+}

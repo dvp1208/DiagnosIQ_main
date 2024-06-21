@@ -1,0 +1,191 @@
+mongodb:
+  project_name: "test"
+  alias: "default"
+  host: "localhost"
+  nifti_root_dir_path: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/datasets/"
+  slice_root_dir_path: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/datasets/MICCAI_BraTS_2019_Data_Training_Slices"
+  code_root_dir_path: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/latent_codes/MICCAI_BraTS_2019_Data_Training/bottom2x2_margin-10-epoch=0299"
+app:
+  login:
+    size: [300, 300]
+  result:
+    min_width: 1000
+    min_height: 1000
+  question:
+    size: [500, 500]
+save:
+  save_result_path: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/App/results"
+static:
+  icon_path: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/App/app/static/icon/triangle.png"
+  glass_icon: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/App/app/static/icon/glass.png"
+  brush_icon: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/App/app/static/icon/brush.png"
+  pencil_icon: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/App/app/static/icon/pencil.png"
+  scale_icon: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/App/app/static/icon/scale.png"
+  duplicate_icon: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/App/app/static/icon/duplicate.png"
+  remove_icon: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/App/app/static/icon/remove.png"
+  exchange_icon: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/App/app/static/icon/exchange.png"
+modes:
+  testing:
+    label: "testing"
+  interactive:
+    label: "interactive"
+annoy:
+  n_trees: 10
+  annoy_model_path: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/annoy/"
+dataset_types:
+  MICCAI_BraTS:
+    dataset_name: "MICCAI_BraTS_2019_Data_Training"
+    template:
+      patient_id: "BraTS19_CBICA_AYI_1"
+      nifti_path: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/datasets/MICCAI_BraTS_2019_Data_Training/BraTS19_CBICA_AYI_1/BraTS19_CBICA_AYI_1_t1.nii.gz"
+      slice_root_dir_path: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/datasets/MICCAI_BraTS_2019_Data_Training_Slices/"
+      modalities: ["t1", "t1ce", "flair"]
+    reference:
+      slice_root_dir_path: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/datasets/MICCAI_BraTS_2019_Data_Training_Slices/"
+      nifti_root_dir_path: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/datasets/MICCAI_BraTS_2019_Data_Training"
+      modalities: ["t1", "t1ce", "flair", "seg"]
+      preferred_modality: "t1ce"
+    viewer:
+      ct_window:
+        window_width: false
+        window_center: false
+        scale: false
+    models:
+      bottom2x2_margin-10-epoch=0299:
+        vector_length: 2048
+        database_path: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/latent_codes/MICCAI_BraTS/bottom2x2_margin-10-epoch=0299"
+        saved_model_path: "C:/Users/user/Desktop/sketch-based-medical-image-retrieval-main/SharedResources/saved_models/MICCAI_BraTS/bottom2x2_margin-10-epoch=0299.ckpt"
+        network_config:
+          nEncoder:
+            use_vae: true
+            input_dim: 3
+            emb_dim: 512
+            filters: [32, 64, 128, 256, 512, 512, 512, 512]
+          lEncoder:
+            input_dim: 1
+            emb_dim: 512
+            filters: [32, 64, 128, 256, 512, 512, 512, 512]
+          aEncoder:
+            use_vae: false
+            input_dim: 3
+            emb_dim: 512
+            filters: [32, 64, 128, 256, 512, 512, 512, 512]
+    structure:
+      structure_list:
+        - class_name: "Peritumoral edema"
+          name: "none"
+          color: "Yellow"
+        - class_name: "Gd-enhancing tumor"
+          name: "none"
+          color: "Brown"
+        - class_name: "Necrotic and non-enhancing tumor core"
+          name: "none"
+          color: "Cyan"
+      class_name_to_id:
+        "Necrotic and non-enhancing tumor core": 1
+        "Peritumoral edema": 2
+        "Gd-enhancing tumor": 3
+      order:
+        - "Peritumoral edema"
+        - "Gd-enhancing tumor"
+        - "Necrotic and non-enhancing tumor core"
+    questions:
+      STAGE_1:
+        Question_1:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_2013_24_1"
+          slice_num: 91
+        Question_2:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_2013_2_1"
+          slice_num: 101
+        Question_3:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_TCIA06_332_1"
+          slice_num: 62
+        Question_4:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_TCIA08_242_1"
+          slice_num: 91
+        Question_5:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_TCIA12_249_1"
+          slice_num: 54
+      STAGE_2:
+        Question_1:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_TCIA10_109_1"
+          slice_num: 87
+        Question_2:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_TMC_30014_1"
+          slice_num: 97
+        Question_3:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_TCIA10_330_1"
+          slice_num: 50
+        Question_4:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_CBICA_BFP_1"
+          slice_num: 100
+        Question_5:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_TCIA06_247_1"
+          slice_num: 48
+      STAGE_3:
+        Question_1:
+          message: "Find the image suggested by the statement below and evaluate whether retieved images match the findings."
+          type: "text"
+          statement: "A 60-mm ring-enhancing tumor is located primarily in the left temporal lobe. It is associated with massive peritumoral edema (about 100 mm in maximum length) extending through the left temporal lobe."
+        Question_2:
+          message: "Find the image suggested by the statement below and evaluate whether retieved images match the findings."
+          type: "text"
+          statement: "A 50-mm non-enhancing tumor is located in the right frontal lobe. It is associated with mild peritumoral edema (about 70 mm in maximum length)."
+        Question_3:
+          message: "Find the image suggested by the statement below and evaluate whether retieved images match the findings."
+          type: "text"
+          statement: "A 25-mm ring-enhancing tumor is located in the left temporal pole (the tip of the left temporal lobe). It is associated with mild peritumoral edema (about 40 mm in maximum length)."
+        Question_4:
+          message: "Find the image suggested by the statement below and evaluate whether retieved images match the findings."
+          type: "text"
+          statement: "A 30-mm ring-enhancing tumor is localized in the right occipital lobe. It is associated with peritumoral edema extending anteriorly (about 60 mm in maximum length)."
+        Question_5:
+          message: "Find the image suggested by the statement below and evaluate whether retieved images match the findings."
+          type: "text"
+          statement: "A 60-mm ring-enhancing tumor is located in the midline of the bilateral frontal lobes. It is associated with extensive peritumoral edema in the bilateral frontal lobes (about 90 mm in maximum length)."
+      STAGE_4:
+        Question_1:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_CBICA_AOP_1"
+          slice_num: 92
+        Question_2:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_CBICA_AXO_1"
+          slice_num: 78
+        Question_3:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_TCIA01_190_1"
+          slice_num: 91
+        Question_4:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_TCIA01_221_1"
+          slice_num: 107
+        Question_5:
+          message: "Please search for images similar to the sample image below."
+          type: "image"
+          patient_id: "BraTS19_TCIA02_322_1"
+          slice_num: 59
